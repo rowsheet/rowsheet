@@ -93,6 +93,20 @@ make_local_migrations: ; $(info $(M) Migrating local database...)
 		TIMES=$(TIMES) \
 		python3 manage.py makemigrations
 
+collect_static : ; $(info $(M) Collecting local static-files...)
+	env \
+		DATABASE_URL=$(DATABASE_URL) \
+		ALL_AUTH_EMAIL_USE_TLS=$(ALL_AUTH_EMAIL_USE_TLS) \
+		ALL_AUTH_EMAIL_HOST=$(ALL_AUTH_EMAIL_HOST) \
+		ALL_AUTH_EMAIL_PORT=$(ALL_AUTH_EMAIL_PORT) \
+		ALL_AUTH_DEFAULT_FROM_EMAIL=$(ALL_AUTH_DEFAULT_FROM_EMAIL) \
+		ALL_AUTH_EMAIL_HOST_USER=$(ALL_AUTH_EMAIL_HOST_USER) \
+		ALL_AUTH_EMAIL_HOST_PASSWORD=$(ALL_AUTH_EMAIL_HOST_PASSWORD) \
+		DISABLE_COLLECTSTATIC=$(DISABLE_COLLECTSTATIC) \
+		SECRET_KEY=$(SECRET_KEY) \
+		TIMES=$(TIMES) \
+		python3 manage.py collectstatic
+
 #-------------------------------------------------------------------------------
 # PSQL (Database Command Line) 
 #-------------------------------------------------------------------------------
