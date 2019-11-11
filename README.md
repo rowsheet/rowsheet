@@ -2,6 +2,7 @@
 # RowSheet
 
 > © 2019-present, Alexander Kleinhans
+>
 > All Rights Reserved
 
 
@@ -61,7 +62,11 @@ Note: Currently, all deployments (that use env vars) must be deployed through th
 ## By RowSheet, LLC
 
 > Company:    RowSheet, LLC 
+>
 > Contact:    alex@rowsheet.com
+>
 > Website:  [rowsheet.com](https://rowsheet.com/)
+>
 > Address:    312 Cheyenne St. Denver, CO 80403
+>
 > [Github](https://github.com/rowsheet)
