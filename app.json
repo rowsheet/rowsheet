@@ -1,0 +1,15 @@
+{
+    "name": "RowSheet",
+    "description": "RowSheet Core Application (web-app and website).",
+    "image": "heroku/python",
+    "repository": "https://github.com/rowsheet/rowsheet",
+    "keywords": ["python", "django", "rowsheet"],
+    "addons": [ "heroku-postgresql" ],
+    "copyright": {
+        "year": 2019,
+        "author": "Alexander Kleinhans",
+        "company", "RowSheet LLC",
+        "contact": "alex@rowsheet.com",
+        "website": "www.rowsheet.com"
+    }
+}

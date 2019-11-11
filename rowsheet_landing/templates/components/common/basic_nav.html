@@ -1,0 +1,17 @@
+<!-- common/basic_nav -->
+<a href="{{ homepage_href }}">
+    <h3 class="masthead-brand">
+        {% if logo_url is not none %}
+            <img id="logo_landing" src="{{ logo_url }}"/>
+        {% else %}
+            {{ logo_title|default:"Logo" }}
+        {% endif %}
+    </h3>
+</a>
+<nav class="nav nav-masthead justify-content-center">
+    {% for nav_link in nav_links %}
+        <a class="nav-link" href="{{ nav_link.href }}">
+            {{ nav_link.name }}
+        </a>
+    {% endfor %}
+</nav>
