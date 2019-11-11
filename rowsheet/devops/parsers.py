@@ -49,22 +49,22 @@ def parse_env(  name=None,      value=None,
     # Check for BOOL.
     #---------------------------------------
     if data_type in ("bool", "boolean"):
-        return _parse_bool(name, value, required)
+        return parse_bool(name, value, required)
     #---------------------------------------
     # Check for INT.
     #---------------------------------------
     if data_type in ("int", "integer"):
-        return _parse_int(name, value, required)
+        return parse_int(name, value, required)
     #---------------------------------------
     # Check for FLOAT.
     #---------------------------------------
     if data_type in ("float", "decimal"):
-        return _parse_int(name, value, required)
+        return parse_int(name, value, required)
 
-#-------------------------------------------------------------------------------
+"""-----------------------------------------------------------------------------
 # Parse boolean values (1, true, True, yes, etc...)
-#-------------------------------------------------------------------------------
-def _parse_bool(name, value, required):
+-----------------------------------------------------------------------------"""
+def parse_bool(name, value, required):
     if value.lower() in ("1", "true", "t", "yes", "y"):
         return True
     if value.lower() in ("0", "false", "f", "no", "n"):
@@ -72,10 +72,10 @@ def _parse_bool(name, value, required):
     if required == True:
         raise Exception("Invalid required boolean environment variable '%s' must be set." % name)
 
-#-------------------------------------------------------------------------------
-# Parse int values (cannot be floats)
-#-------------------------------------------------------------------------------
-def _parse_int(name, value, required):
+"""-----------------------------------------------------------------------------
+Parse int values (cannot be floats)
+-----------------------------------------------------------------------------"""
+def parse_int(name, value, required):
     try:
         return int(value)
     except Exception as ex:
@@ -84,10 +84,10 @@ def _parse_int(name, value, required):
         raise Warning("Invalid integer data-type for non-required environment variable '%s'. This variable will be unset" % name)
         return None
 
-#-------------------------------------------------------------------------------
-# Parse int values (CAN be integers)
-#-------------------------------------------------------------------------------
-def _parse_float(name, value, required):
+"""-----------------------------------------------------------------------------
+Parse int values (CAN be integers)
+-----------------------------------------------------------------------------"""
+def parse_float(name, value, required):
     try:
         return float(value)
     except Exception as ex:

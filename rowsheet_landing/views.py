@@ -4,10 +4,17 @@ from django.conf import settings
 from django.template.loader import render_to_string
 from django.utils.safestring import mark_safe 
 
+from rowsheet.cms import utils
+
 def index(request):
     context = {
-        "scripts": [
-        ],
+        "scripts": [],
+        "stylesheets" : utils.compile_stylesheets(
+            "rowsheet_landing",[
+                "/components/rowsheet/terminal_banner.css",
+                "/layouts/landing_cover.css"
+            ]
+        ),
         "title": settings.RS_WEBSITE_TITLE,
         "header": mark_safe(render_to_string(
             "components/landing_cover/header.html", {
