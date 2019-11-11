@@ -4,8 +4,6 @@ from django.conf import settings
 from django.template.loader import render_to_string
 from django.utils.safestring import mark_safe 
 
-from .models import Greeting
-
 def index(request):
     context = {
         "scripts": [
