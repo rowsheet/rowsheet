@@ -27,6 +27,9 @@ deploy_production: set_prod_env ; $(info $(M) Running staging server...)
 	git push production master
 	heroku run python manage.py migrate --app $(PRODVAR---HEROKU_APP_NAME)
 
+create_production_superuser: set_staging_env; $(info $(M) Creating super-user on production server...)
+	heroku run python3 manage.py createsuperuser --app $(PRODVAR---HEROKU_APP_NAME)
+
 #-------------------------------------------------------------------------------
 # STAGING 
 #-------------------------------------------------------------------------------
@@ -46,6 +49,9 @@ set_staging_env: ; $(info $(M) Setting staging env vars...)
 deploy_staging: set_staging_env; $(info $(M) Running staging server...)
 	git push staging master
 	heroku run python manage.py migrate --app $(STAGEVAR---HEROKU_APP_NAME)
+
+create_staging_superuser: set_staging_env; $(info $(M) Creating super-user on staging server...)
+	heroku run python3 manage.py createsuperuser --app $(STAGEVAR---HEROKU_APP_NAME)
 
 #-------------------------------------------------------------------------------
 # LOCAL
@@ -106,6 +112,20 @@ collect_static : ; $(info $(M) Collecting local static-files...)
 		SECRET_KEY=$(SECRET_KEY) \
 		TIMES=$(TIMES) \
 		python3 manage.py collectstatic
+
+create_local_superuser: ; $(info $(M) Creating super-user for local server...)
+	env \
+		DATABASE_URL=$(DATABASE_URL) \
+		ALL_AUTH_EMAIL_USE_TLS=$(ALL_AUTH_EMAIL_USE_TLS) \
+		ALL_AUTH_EMAIL_HOST=$(ALL_AUTH_EMAIL_HOST) \
+		ALL_AUTH_EMAIL_PORT=$(ALL_AUTH_EMAIL_PORT) \
+		ALL_AUTH_DEFAULT_FROM_EMAIL=$(ALL_AUTH_DEFAULT_FROM_EMAIL) \
+		ALL_AUTH_EMAIL_HOST_USER=$(ALL_AUTH_EMAIL_HOST_USER) \
+		ALL_AUTH_EMAIL_HOST_PASSWORD=$(ALL_AUTH_EMAIL_HOST_PASSWORD) \
+		DISABLE_COLLECTSTATIC=$(DISABLE_COLLECTSTATIC) \
+		SECRET_KEY=$(SECRET_KEY) \
+		TIMES=$(TIMES) \
+		python3 manage.py createsuperuser 
 
 #-------------------------------------------------------------------------------
 # PSQL (Database Command Line) 
