@@ -37,7 +37,7 @@ create_production_superuser: set_staging_env; $(info $(M) Creating super-user on
 
 set_staging_env: ; $(info $(M) Setting staging env vars...)
 	heroku config:set DATABASE_URL=$(STAGE__DATABASE_URL) --remote staging
-	heroku config:set DEBUG=$(STAGE__DEBUG ) --remote staging
+	heroku config:set DEBUG=$(STAGE__DEBUG) --remote staging
 	heroku config:set ALL_AUTH_EMAIL_USE_TLS=$(STAGE__ALL_AUTH_EMAIL_USE_TLS) --remote staging
 	heroku config:set ALL_AUTH_EMAIL_HOST=$(STAGE__ALL_AUTH_EMAIL_HOST) --remote staging
 	heroku config:set ALL_AUTH_EMAIL_PORT=$(STAGE__ALL_AUTH_EMAIL_PORT) --remote staging
