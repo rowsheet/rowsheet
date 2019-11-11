@@ -60,6 +60,7 @@ create_staging_superuser: set_staging_env; $(info $(M) Creating super-user on st
 run_local: ; $(info $(M) Running local server...)
 	env \
 		DATABASE_URL=$(DATABASE_URL) \
+		DEBUG=$(DEBUG) \
 		ALL_AUTH_EMAIL_USE_TLS=$(ALL_AUTH_EMAIL_USE_TLS) \
 		ALL_AUTH_EMAIL_HOST=$(ALL_AUTH_EMAIL_HOST) \
 		ALL_AUTH_EMAIL_PORT=$(ALL_AUTH_EMAIL_PORT) \
@@ -74,6 +75,7 @@ run_local: ; $(info $(M) Running local server...)
 migrate_local_db: ; $(info $(M) Migrating local database...)
 	env \
 		DATABASE_URL=$(DATABASE_URL) \
+		DEBUG=$(DEBUG) \
 		ALL_AUTH_EMAIL_USE_TLS=$(ALL_AUTH_EMAIL_USE_TLS) \
 		ALL_AUTH_EMAIL_HOST=$(ALL_AUTH_EMAIL_HOST) \
 		ALL_AUTH_EMAIL_PORT=$(ALL_AUTH_EMAIL_PORT) \
@@ -88,6 +90,7 @@ migrate_local_db: ; $(info $(M) Migrating local database...)
 make_local_migrations: ; $(info $(M) Migrating local database...)
 	env \
 		DATABASE_URL=$(DATABASE_URL) \
+		DEBUG=$(DEBUG) \
 		ALL_AUTH_EMAIL_USE_TLS=$(ALL_AUTH_EMAIL_USE_TLS) \
 		ALL_AUTH_EMAIL_HOST=$(ALL_AUTH_EMAIL_HOST) \
 		ALL_AUTH_EMAIL_PORT=$(ALL_AUTH_EMAIL_PORT) \
@@ -102,6 +105,7 @@ make_local_migrations: ; $(info $(M) Migrating local database...)
 collect_static : ; $(info $(M) Collecting local static-files...)
 	env \
 		DATABASE_URL=$(DATABASE_URL) \
+		DEBUG=$(DEBUG) \
 		ALL_AUTH_EMAIL_USE_TLS=$(ALL_AUTH_EMAIL_USE_TLS) \
 		ALL_AUTH_EMAIL_HOST=$(ALL_AUTH_EMAIL_HOST) \
 		ALL_AUTH_EMAIL_PORT=$(ALL_AUTH_EMAIL_PORT) \
@@ -116,6 +120,7 @@ collect_static : ; $(info $(M) Collecting local static-files...)
 create_local_superuser: ; $(info $(M) Creating super-user for local server...)
 	env \
 		DATABASE_URL=$(DATABASE_URL) \
+		DEBUG=$(DEBUG) \
 		ALL_AUTH_EMAIL_USE_TLS=$(ALL_AUTH_EMAIL_USE_TLS) \
 		ALL_AUTH_EMAIL_HOST=$(ALL_AUTH_EMAIL_HOST) \
 		ALL_AUTH_EMAIL_PORT=$(ALL_AUTH_EMAIL_PORT) \

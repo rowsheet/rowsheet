@@ -2,6 +2,7 @@ import os
 import django_heroku 
 import dj_database_url
 import dotenv
+from parse_env import parse_env
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -12,8 +13,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # @TODO change secret key.
 SECRET_KEY = "CHANGE_ME!!!! (P.S. the SECRET_KEY environment variable will be used, if set, instead)."
 
-# @TODO don't run with debug turned on in production!
-DEBUG = True
+# required BOOL, default False.
+DEBUG = parse_env("DEBUG", os.getenv("DEBUG"), data_type="bool",
+        default=False, required=True)
 
 ALLOWED_HOSTS = []
 

@@ -1,30 +1,21 @@
-def _parse_bool(name, value, required):
-    if value.lower() in ("1", "true", "t", "yes", "y"):
-        return True
-    if value.lower() in ("0", "false", "f", "no", "no"):
-        return False
-    if required == True:
-        raise Exception("Invalid required boolean environment variable '%s' must be set." % name)
+"""-----------------------------------------------------------------------------
+Parse Env:
+    Parse an environment variable depending on certain constraints:
 
-def _parse_int(name, value, required):
-    try:
-        return int(value)
-    except Exception as ex:
-        if required == True:
-            raise Exception("Invalid required integer environment variable '%s' must be set." % name)
-        raise Warning("Invalid integer data-type for non-required environment variable '%s'. This variable will be unset" % name)
-        return None
+    name                REQUIRED (for debugging)
+    value               DEPENDS
+    default             OPTIONAL
+    data_type           "bool" | "string" | "int" | "float" + case vairations
+    required            OPTIONAL
+    empty_str_valid     OPTIONAL
 
-def _parse_float(name, value, required):
-    try:
-        return float(value)
-    except Exception as ex:
-        if required == True:
-            raise Exception("Invalid required float environment variable '%s' must be set." % name)
-        raise Warning("Invalid float data-type for non-required environment variable '%s'. This variable will be unset" % name)
-        return None
-
-def parse_env(name, value, default=None, data_type="string", required=False, empty_str_valid=False):
+Note:
+    The last parameter only matters for "string" type variables but allows
+    REQUIRED variables to be valid if they are an empty string (versus) None.
+-----------------------------------------------------------------------------"""
+def parse_env(  name=None,      value=None,
+                default=None,   data_type="string",
+                required=False, empty_str_valid=False):
     #---------------------------------------
     # Check if REQUIRED.
     #---------------------------------------
@@ -33,8 +24,10 @@ def parse_env(name, value, default=None, data_type="string", required=False, emp
         raise Exception("Missing variable name attempting to parse.")
     if value is None:
         if required == True:
-            raise Exception("Missing required environment variable '%s'" %
-                    name)
+            if default is None:
+                raise Exception("Missing required environment variable '%s'" %
+                        name)
+            return default
         return None
     #---------------------------------------
     # Check data-type..
@@ -68,6 +61,44 @@ def parse_env(name, value, default=None, data_type="string", required=False, emp
     if data_type in ("float", "decimal"):
         return _parse_int(name, value, required)
 
+#-------------------------------------------------------------------------------
+# Parse boolean values (1, true, True, yes, etc...)
+#-------------------------------------------------------------------------------
+def _parse_bool(name, value, required):
+    if value.lower() in ("1", "true", "t", "yes", "y"):
+        return True
+    if value.lower() in ("0", "false", "f", "no", "n"):
+        return False
+    if required == True:
+        raise Exception("Invalid required boolean environment variable '%s' must be set." % name)
+
+#-------------------------------------------------------------------------------
+# Parse int values (cannot be floats)
+#-------------------------------------------------------------------------------
+def _parse_int(name, value, required):
+    try:
+        return int(value)
+    except Exception as ex:
+        if required == True:
+            raise Exception("Invalid required integer environment variable '%s' must be set." % name)
+        raise Warning("Invalid integer data-type for non-required environment variable '%s'. This variable will be unset" % name)
+        return None
+
+#-------------------------------------------------------------------------------
+# Parse int values (CAN be integers)
+#-------------------------------------------------------------------------------
+def _parse_float(name, value, required):
+    try:
+        return float(value)
+    except Exception as ex:
+        if required == True:
+            raise Exception("Invalid required float environment variable '%s' must be set." % name)
+        raise Warning("Invalid float data-type for non-required environment variable '%s'. This variable will be unset" % name)
+        return None
+
+#-------------------------------------------------------------------------------
+# Unit tests. Feel free to add your own.
+#-------------------------------------------------------------------------------
 if __name__ == "__main__":
     # Test some cases with ([name], [value], [default], [data_type], [required], [error], [empty_str_valid])
     def run_test(test):
