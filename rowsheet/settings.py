@@ -30,6 +30,10 @@ INSTALLED_APPS = [
 
     "rowsheet",         # Core application.
     "rowsheet_landing", # RowSheet landing page.
+    "rowsheet_apps",
+    "cloud_storage",
+    "affiliate_marketing",
+    "storefront",
 ]
 
 MIDDLEWARE = [
@@ -48,7 +52,9 @@ ROOT_URLCONF = "rowsheet.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [
+            os.path.join(BASE_DIR, "rowsheet/templates"),
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [

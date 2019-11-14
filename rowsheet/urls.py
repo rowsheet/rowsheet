@@ -10,5 +10,6 @@ import rowsheet_landing.views
 urlpatterns = [
     path("admin/", admin.site.urls),
     url(r"^accounts/", include("allauth.urls")),
-    path("", rowsheet_landing.views.index, name="index"),
+    url(r"^", include("rowsheet_landing.urls")),
+    # path("", rowsheet_landing.views.index, name="index"),
 ]

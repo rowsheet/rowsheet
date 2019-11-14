@@ -3,6 +3,43 @@ from django.conf import settings
 from rowsheet.cms.components.common.BasicNav import BasicNav
 from rowsheet.cms.components.common.BasicFooter import BasicFooter
 
+def rowsheet_dashboard_sidebar():
+    sidebar = [
+        {
+            "type": "link",
+            "title": "Dashboard",
+            "fa_icon": "cog",
+            "href": "/dashboard",
+            "active": False,
+        },
+        {
+            "type": "label",
+            "title": "Something",
+        },
+        {
+            "type": "link",
+            "title": "Apps",
+            "fa_icon": "cog",
+            "href": "/dashboard/apps",
+            "active": False,
+        },
+        {
+            "type": "link",
+            "title": "---",
+            "fa_icon": "cog",
+            "href": "#",
+            "active": False,
+        },
+        {
+            "type": "link",
+            "title": "---",
+            "fa_icon": "cog",
+            "href": "#",
+            "active": False,
+        },
+    ]
+    return sidebar
+
 def rowsheet_landing_header():
     basic_nav = BasicNav(
         title = settings.RS_WEBSITE_TITLE,

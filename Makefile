@@ -134,6 +134,37 @@ create_local_superuser: ; $(info $(M) Creating super-user for local server...)
 		TIMES=$(TIMES) \
 		python3 manage.py createsuperuser 
 
+cli: ; $(info $(M) Running Django CLI with local config...)
+	env \
+		DATABASE_URL=$(DATABASE_URL) \
+		DEBUG=$(DEBUG) \
+		ALL_AUTH_EMAIL_USE_TLS=$(ALL_AUTH_EMAIL_USE_TLS) \
+		ALL_AUTH_EMAIL_HOST=$(ALL_AUTH_EMAIL_HOST) \
+		ALL_AUTH_EMAIL_PORT=$(ALL_AUTH_EMAIL_PORT) \
+		ALL_AUTH_DEFAULT_FROM_EMAIL=$(ALL_AUTH_DEFAULT_FROM_EMAIL) \
+		ALL_AUTH_EMAIL_HOST_USER=$(ALL_AUTH_EMAIL_HOST_USER) \
+		ALL_AUTH_EMAIL_HOST_PASSWORD=$(ALL_AUTH_EMAIL_HOST_PASSWORD) \
+		DISABLE_COLLECTSTATIC=$(DISABLE_COLLECTSTATIC) \
+		SECRET_KEY=$(SECRET_KEY) \
+		TIMES=$(TIMES) \
+		python3 manage.py shell
+
+start_app: ; $(info $(M) Adding new app...)
+	env \
+		DATABASE_URL=$(DATABASE_URL) \
+		DEBUG=$(DEBUG) \
+		ALL_AUTH_EMAIL_USE_TLS=$(ALL_AUTH_EMAIL_USE_TLS) \
+		ALL_AUTH_EMAIL_HOST=$(ALL_AUTH_EMAIL_HOST) \
+		ALL_AUTH_EMAIL_PORT=$(ALL_AUTH_EMAIL_PORT) \
+		ALL_AUTH_DEFAULT_FROM_EMAIL=$(ALL_AUTH_DEFAULT_FROM_EMAIL) \
+		ALL_AUTH_EMAIL_HOST_USER=$(ALL_AUTH_EMAIL_HOST_USER) \
+		ALL_AUTH_EMAIL_HOST_PASSWORD=$(ALL_AUTH_EMAIL_HOST_PASSWORD) \
+		DISABLE_COLLECTSTATIC=$(DISABLE_COLLECTSTATIC) \
+		SECRET_KEY=$(SECRET_KEY) \
+		TIMES=$(TIMES) \
+	python3 manage.py startapp $(app_name)
+
+
 #-------------------------------------------------------------------------------
 # PSQL (Database Command Line) 
 #-------------------------------------------------------------------------------
