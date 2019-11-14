@@ -1,1 +1,1 @@
-web: gunicorn rowsheet.wsgi --log-file -
+web: python manage.py collectstatic --noinput; gunicorn rowsheet.wsgi --log-file -
