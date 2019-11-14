@@ -101,6 +101,28 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 django_heroku.settings(locals())
 del DATABASES["default"]["OPTIONS"]["sslmode"]
 
+
+#-------------------------------------------------------------------------------
+# ALL-AUTH.
+#-------------------------------------------------------------------------------
+
+INSTALLED_APPS += [
+    "django.contrib.sites",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.google",
+    "allauth.socialaccount.providers.github",
+    "allauth.socialaccount.providers.twitter",
+    "allauth.socialaccount.providers.facebook",
+]
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
+LOGIN_REDIRECT_URL = "/"
+SITE_ID = 1
+
 #-------------------------------------------------------------------------------
 # ROWSHEET DEPLOYMENT VARIABLES.
 #-------------------------------------------------------------------------------

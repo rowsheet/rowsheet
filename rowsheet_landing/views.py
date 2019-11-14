@@ -6,6 +6,31 @@ from django.utils.safestring import mark_safe
 
 from rowsheet.cms import utils
 
+header = mark_safe(render_to_string(
+    "components/landing_cover/header.html", {
+        "content": render_to_string(
+            "components/common/basic_nav.html", {
+            "title":        settings.RS_WEBSITE_TITLE,
+            "homepage_url": settings.RS_WEBSITE_HOMEPAGE_URL,
+            "nav_links":    settings.RS_WEBSITE_NAV_LINKS,
+            "logo_url":     settings.RS_WEBSITE_LOGO_URL,
+            }
+        ),
+    },
+))
+
+footer = mark_safe(render_to_string(
+    "components/landing_cover/footer.html", {
+        "content": render_to_string(
+            "components/legal/copyright.html", {
+            "year":     settings.RS_WEBSITE_COPYRIGHT_YEAR,
+            "author":   settings.RS_WEBSITE_COPYRIGHT_AUTHOR,
+            "extra":    settings.RS_WEBSITE_COPYRIGHT_EXTRA,
+            },
+        ),
+    },
+))
+
 def index(request):
     context = {
         "scripts": [],
@@ -15,34 +40,13 @@ def index(request):
                 "/layouts/landing_cover.css"
             ]
         ),
-        "title": settings.RS_WEBSITE_TITLE,
-        "header": mark_safe(render_to_string(
-            "components/landing_cover/header.html", {
-                "content": render_to_string(
-                    "components/common/basic_nav.html", {
-                    "title":        settings.RS_WEBSITE_TITLE,
-                    "homepage_url": settings.RS_WEBSITE_HOMEPAGE_URL,
-                    "nav_links":    settings.RS_WEBSITE_NAV_LINKS,
-                    "logo_url":     settings.RS_WEBSITE_LOGO_URL,
-                    }
-                ),
-            },
-        )),
+        "title": "RowSheet - Home",
+        "header": header,
+        "footer": footer,
         "body": mark_safe(render_to_string(
             "components/landing_cover/body.html", {
                 "content": render_to_string(
                     "components/rowsheet/terminal_banner.html"
-                ),
-            },
-        )),
-        "footer": mark_safe(render_to_string(
-            "components/landing_cover/footer.html", {
-                "content": render_to_string(
-                    "components/legal/copyright.html", {
-                    "year":     settings.RS_WEBSITE_COPYRIGHT_YEAR,
-                    "author":   settings.RS_WEBSITE_COPYRIGHT_AUTHOR,
-                    "extra":    settings.RS_WEBSITE_COPYRIGHT_EXTRA,
-                    },
                 ),
             },
         )),
