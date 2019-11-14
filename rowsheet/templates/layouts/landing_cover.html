@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{{ title }}</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" rel="stylesheet" type="text/css"/>
+        <link href="https://fonts.googleapis.com/css?family=Lato:700|Roboto+Mono&display=swap" rel="stylesheet">
+        {{ stylesheets }}
+    </head>
+    <body class="text-center">
+        {% if alert is not None %}
+        <div class="top-bar">
+            {{ alert }} 
+            <style>.top-bar {position: absolute;background: #FFC107;
+            width: 100vw;text-shadow: none;color: black;}</style>
+        </div>
+        {% endif %}
+        <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column 
+            {% if alert is not None %}
+                pt-5
+            {% endif %}
+            ">
+            {{ header }}
+            {{ body }}
+            {{ footer }}
+        </div>
+    </div>
+</html>
