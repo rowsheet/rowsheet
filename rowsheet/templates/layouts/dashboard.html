@@ -32,53 +32,17 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
+        {{ off_canvas_sidebar }}
+
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#" uk-toggle="target: #offcanvas-overlay">
-                <img id="dashboard_logo_large" src="https://storage.googleapis.com/rowsheet/logos/clear_back_wide.png"/>
-                <img id="dashboard_logo_small" src="https://storage.googleapis.com/rowsheet/logos/clear_discrete.png"/>
+                <img id="dashboard_logo_large" src="/static/logos/clear_back_wide.png"/>
+                <img id="dashboard_logo_small" src="/static/logos/clear_discrete.png"/>
             </a>
 
-            <!-- OFF CANVAS SIDEBAR -->
-            <div id="offcanvas-overlay" uk-offcanvas="overlay: true">
-                <div class="uk-offcanvas-bar">
-                    <button class="uk-offcanvas-close" type="button" uk-close></button>
-                    <h3>Title</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                </div>
-            </div>
-
-            <!-- NORMAL SIDEBAR -->
-            <li class="nav-ite">
-                <a id="main_sidebar_navlink" class="nav-link" href="#">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>{{ title }}</span>
-                </a>
-            </li>
-            {% for item in sidebar %}
-                {% if item.type == "link" %}
-                <li class="nav-item {% if item.active == True %}active{% endif %}">
-                    <a class="nav-link" href="{{ item.href }}">
-                        <i class="fas fa-fw fa-{{ item.fa_icon }}"></i>
-                        <span>{{ item.title }}</span>
-                    </a>
-                </li>
-                {% elif item.type == "label" %}
-                <div class="sidebar-heading">
-                    {{ item.title }} 
-                </div>
-                {% endif %}
-            {% endfor %}
-
-            <br>
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button id="toggle_back_sidebar" class="rounded-circle border-0" href="#" uk-toggle="target: #offcanvas-overlay">
-                    <i class="fas fa-fw fa-angle-left"></i>
-                </button>
-            </div>
+            {{ normal_sidebar }}
 
         </ul>
         <!-- End of Sidebar -->
@@ -93,7 +57,7 @@
                 <nav class="navbar navbar-expand navbar-light bg-white topbar static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3" uk-toggle="target: #offcanvas-overlay">
                         <i class="fa fa-bars"></i>
                     </button>
 
@@ -133,143 +97,12 @@
                             </div>
                         </li>
 
-                        <!-- Nav Item - Alerts -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
-                            </a>
-                            <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header">
-                                    Alerts Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-donate text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 7, 2019</div>
-                                        $290.29 has been deposited into your account!
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 2, 2019</div>
-                                        Spending Alert: We've noticed unusually high spending for your account.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                            </div>
-                        </li>
-
-                        <!-- Nav Item - Messages -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-envelope fa-fw"></i>
-                                <!-- Counter - Messages -->
-                                <span class="badge badge-danger badge-counter">7</span>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
-                                <h6 class="dropdown-header">
-                                    Message Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div class="font-weight-bold">
-                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div>
-                                        <div class="small text-gray-500">Emily Fowler · 58m</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">
-                                        <div class="status-indicator"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">I have the photos that you ordered last month, how would you like them sent to you?</div>
-                                        <div class="small text-gray-500">Jae Chun · 1d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">
-                                        <div class="status-indicator bg-warning"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Last month's report looks great, I am very happy with the progress so far, keep up the good work!</div>
-                                        <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</div>
-                                        <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-                            </div>
-                        </li>
+                        {{ notifications_loader }}
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline small">Valerie Luna</span>
-                                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
-                            </div>
-                        </li>
-
+                        {{ profile_dropdown }}
                     </ul>
-
                 </nav>
                 <!-- End of Topbar -->
 
@@ -277,21 +110,20 @@
                 <div class="container-fluid px-0">
 
                     <!-- Page Heading -->
-                    <div id="main_content_nav" class="d-sm-flex align-items-center justify-content-between px-3">
-                        <h5 class="text-dark m-0">{{ title }}</h5>
-                        <button class="btn btn-primary">Something</button>
-                        <!--
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-                        -->
+                    <div id="main_content_nav" class="d-sm-flex align-items-center justify-content-between px-0">
+                        <h5 class="main_content_nav_item main_content_nav_title text-dark m-0">{{ title }}</h5>
+                        <button class="main_content_nav_item btn btn-primary">Something</button>
+                        <button class="main_content_nav_item btn btn-primary active">Something</button>
+                        <button class="main_content_nav_item btn btn-primary">Something</button>
                     </div>
 
                     <!-- Content Row -->
                     <div class="row" id="main_content_row">
 
-                        <!-- Earnings (Monthly) Card Example -->
                         <div class="col-md-12" style="position: initial;">
                             {{ body }}
                         </div>
+
                     </div>
 
                 </div>
@@ -299,18 +131,6 @@
 
             </div>
             <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <!--
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2019</span>
-                    </div>
-                </div>
-            </footer>
-            -->
-            <!-- End of Footer -->
 
         </div>
         <!-- End of Content Wrapper -->

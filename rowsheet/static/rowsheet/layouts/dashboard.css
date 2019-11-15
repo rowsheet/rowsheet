@@ -335,6 +335,9 @@ table.sheet_view {
     display: inline-block;
     overflow: scroll;
 }
+.dropdown-list > * {
+    border: none !important;
+}
 /*============================================================================*/
 /* DONT FUCK WITH MY TABLES */
 /* DONT FUCK WITH MY TABLES */
@@ -519,4 +522,94 @@ div.tableview_edit_aux_warpper p {
 }
 div.tableview_edit_aux_warpper code {
     font-size: 11px !important;
+}
+
+
+/* LOADING */
+.loading {
+    text-align: center;
+    padding: 25px;
+    color: #4d73df;
+    font-size: 20px;
+}
+
+a.nav-link.dropdown-toggle i {
+    background: #ffffff45;
+    padding: 9px;
+    height: 35px;
+    width: 35px;
+    border-radius: 20px;
+}
+div#profile_photo_placeholder {
+    text-align: center;
+}
+div#profile_photo_placeholder i {
+    background: #4e72dd;
+    transition: 0.25s;
+
+}
+div#profile_photo_placeholder:hover {
+    color: #77ba3f;
+}
+div#profile_photo_placeholder:hover i {
+    background: white;
+    transition: 0.25s;
+}
+.main_content_nav_item {
+    width: 100%;
+    text-align: center;
+    height: 100%;
+    border-radius: 0px;
+}
+.main_content_nav_title {
+    padding-top: 13px;
+}
+button.main_content_nav_item {
+    background: none;
+    color: #4d73df;
+    border: none;
+}
+
+button.main_content_nav_item.active {
+    background: #ebecef !important;
+    color: #2653d4 !important;
+    border-bottom: 5px solid #4c73df !important;
+    padding-bottom: 0px;
+}
+.main_content_nav_title {
+    text-align: left;
+    padding-left: 15px;
+    font-weight: bold;
+}
+
+/* Look like GCP */
+.sidebar * {
+    color: #5a5b69 !important;
+}
+.sidebar {
+    background: #f2f3f5;
+    border-right: 1px solid #e5e7e9;
+}
+#main_content_nav {
+    height: 50px;
+    border-bottom: 1px solid #e2e3e6;
+}
+.uk-offcanvas-bar {
+    background: #f2f3f5;
+}
+.uk-offcanvas-bar * {
+    color: #5a5b69;
+}
+.sidebar-brand {
+    background: #77ba3f;
+    box-shadow: 0 7px 10px 0 rgba(60,66,87, 0.12) , 0 3px 5px 0 rgba(0,0,0, 0.12) !important;
+}
+button#toggle_back_sidebar {
+    background: #77ba3f;
+}
+button#toggle_back_sidebar i {
+    color: white !important;
+}
+a#main_sidebar_navlink {
+    border-bottom: 1px solid #dbdcde;
 }

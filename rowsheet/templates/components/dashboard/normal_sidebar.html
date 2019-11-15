@@ -1,0 +1,28 @@
+<!-- NORMAL SIDEBAR -->
+<li class="nav-ite">
+    <a id="main_sidebar_navlink" class="nav-link" href="#">
+        <i class="fas fa-fw fa-cog"></i>
+        <span>{{ title }}</span>
+    </a>
+</li>
+{% for item in sidebar %}
+    {% if item.type == "link" %}
+    <li class="nav-item {% if item.active == True %}active{% endif %}">
+        <a class="nav-link" href="{{ item.href }}">
+            <i class="fas fa-fw fa-{{ item.fa_icon }}"></i>
+            <span>{{ item.title }}</span>
+        </a>
+    </li>
+    {% elif item.type == "label" %}
+    <div class="sidebar-heading">
+        {{ item.title }} 
+    </div>
+    {% endif %}
+{% endfor %}
+<br>
+<!-- Sidebar Toggler (Sidebar) -->
+<div class="text-center d-none d-md-inline">
+    <button id="toggle_back_sidebar" class="rounded-circle border-0" href="#" uk-toggle="target: #offcanvas-overlay">
+        <i class="fas fa-fw fa-angle-left"></i>
+    </button>
+</div>

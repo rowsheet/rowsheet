@@ -17,18 +17,33 @@ def api(request):
     rjson = serializers.serialize('json',results)
     return HttpResponse(rjson, content_type='application/json')
 
+def component_index(request):
+    dashboard = Dashboard()
+    dashboard.set_normal_sidebar(rowsheet_dashboard_sidebar)
+    dashboard.set_new_alerts(3)
+    dashboard.set_new_messages(5)
+    dashboard.set_user_profile(
+        username="Alex K",
+        profile_photo="/static/headshot.png",
+    )
+    dashboard.set_off_canvas_sidebar()
+    dashboard.set_title("Component Index")
+    return dashboard.render()
+
 def components(request):
     return HttpResponse("SOMETHING")
 
 def dashboard(request):
     dashboard = Dashboard()
-    dashboard.set_sidebar(rowsheet_dashboard_sidebar)
+    dashboard.set_normal_sidebar(rowsheet_dashboard_sidebar)
+    dashboard.set_off_canvas_sidebar()
     dashboard.set_title("Dashboard")
     return dashboard.render()
 
 def dashboard_organizations(request):
     dashboard = Dashboard()
-    dashboard.set_sidebar(rowsheet_dashboard_sidebar)
+    dashboard.set_normal_sidebar(rowsheet_dashboard_sidebar)
+    dashboard.set_off_canvas_sidebar()
     dashboard.set_title("Organizations")
 
     from rowsheet_apps.models import Organization
@@ -41,7 +56,8 @@ def dashboard_organizations(request):
 
 def dashboard_apps(request):
     dashboard = Dashboard()
-    dashboard.set_sidebar(rowsheet_dashboard_sidebar)
+    dashboard.set_normal_sidebar(rowsheet_dashboard_sidebar)
+    dashboard.set_off_canvas_sidebar()
     dashboard.set_title("Apps")
     from affiliate_marketing.views import BrandSliderSheet
     bss = BrandSliderSheet()
