@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime
 
 #-------------------------------------------------------------------------------
 #       ____                       ________      __                             
@@ -135,6 +136,10 @@ class BrandSlider(models.Model):
         verbose_name = "Show Shop Link",
         null=False, default=True, blank=False
     )
+    creation_timestamp = models.DateTimeField(
+            default=datetime.now, blank=False)
+    last_changed_timestamp = models.DateTimeField(
+            default=datetime.now, blank=False)
     def __str__(self):
         return str(self.name)
 

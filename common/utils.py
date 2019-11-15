@@ -155,7 +155,7 @@ def tableview_text(text):
     </div>
     """ % text)
 
-def edit_button():
+def edit_button(creation_timestamp = None, last_changed_timestamp = None):
     return mark_safe("""
     <div class="tableview_edit_button">
     <div class='btn btn-outline-primary'
@@ -172,8 +172,20 @@ def edit_button():
         </i>
         Edit
     </div>
+    <div class="tableview_edit_aux_warpper">
+        <p>
+            Creation Timestamp
+            <br>
+            <code>%s</code>
+        </p>
+        <p>
+            Last-Changed Timestamp
+            <br>
+            <code>%s</code>
+        </p>
     </div>
-    """)
+    </div>
+    """ % (creation_timestamp, last_changed_timestamp))
 
 def button(active, href, text, name="", outline=True):
     status = tableview_active(active, name=name, outline=outline, width=50)
@@ -237,6 +249,19 @@ def tableview_cloudfile(cloudfile, type="image"):
     </div>
     </div>
     """ % html)
+
+# @TODO Support other types.
+def image_and_description(cloudfile, description):
+    text_view = tableview_label(description)
+    image_view = tableview_cloudfile(cloudfile, type="image")
+    return mark_safe("""
+    <div class="tableview_image_and_description">
+    %s %s
+    </div>
+    """ % (
+        image_view,
+        text_view,
+    ))
 
 #-------------------------------------------------------------------------------
 #       ____                       __

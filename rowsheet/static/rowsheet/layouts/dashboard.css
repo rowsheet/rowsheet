@@ -1,0 +1,522 @@
+/*----------------------------------------------------------------------------*/
+/*  TABLE VIEW */
+/*----------------------------------------------------------------------------*/
+
+:root {
+    --checker_back_primary: #d6edff;
+    --checker_back_secondary: #ffeaea;
+    --theme_font_primary: "Oswald";
+    --theme_title_font_weight: 900;
+    --theme_subtitle_font_weight: 500;
+}
+
+/* CARD TOPS */
+.rs_card .card-footer {
+    text-align: center;
+}
+/* CARD TOPS */
+.rs_card_row {
+    display: flex;
+    flex-wrap: wrap;
+}
+.rs_card .card-header .rs_card_item {
+    margin: 0px !important;
+}
+.rs_card_column {
+    flex-grow: 1;
+    margin: 1px;
+    text-align: center;
+}
+/* CARD LABELS */
+.rs_card_item {
+    margin-bottom: 15px;
+}
+.rs_card_label span {
+    background: #ffffff;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.rs_card_label {
+    margin-top: -10px;
+    color: #d4d4d4;
+    font-size: 12px;
+    text-transform: uppercase;
+    text-align: center;
+}
+/* CARDS */
+.rs_card_item .tableview_text {
+}
+.rs_card {
+    box-shadow: 0 7px 14px 0 rgba(70,70,70, 0.13) , 0 3px 6px 0 rgba(0,0,0, 0.13);
+    border: none;
+}
+.rs_card > div {
+    padding: 5px;
+}
+.rs_card .tableview_brand_info > div {
+    width: 100% !important;
+}
+.rs_card .tableview_brand_info {
+    width: 100%;
+}
+.rs_card .tableview_slider_info > div {
+    width: 100% !important;
+}
+.rs_card .tableview_slider_info {
+    width: 100%;
+}
+.rs_card_item .tableview_text {
+    font-size: 13px;
+    width: 100%;
+    height: 75px !important;
+}
+.rs_card_item .tableview_brand_link {
+    text-align: center;
+}
+.tableview_brand_link > div {
+    width: 100%;
+}
+.rs_card_item .tableview_subcell_value button {
+    float: right;
+}
+.rs_card_item .tableview_button {
+    text-align: center;
+}
+.rs_card_item .tableview_cloudfile {
+    height: 75px !important;
+}
+.rs_card_item .tableview_button a {
+    width: 100% !important;
+}
+.tableview_model_link > a {
+    width: 100%;
+}
+.tableview_model_link > a > div {
+    text-align: center;
+    width: 100%;
+}
+.rs_card_item .admin_table_image_list_content a {
+    max-width: none;
+}
+.rs_card_item .admin_table_image_list_content img {
+    width: 100%;
+    max-width: none;
+    height: 200px;
+}
+.rs_card_item .tableview_cloudfile {
+    height: 200px !important;
+    overflow: hidden;
+}
+
+
+/* Buttons */
+.btn-toggle{
+    padding: 0px;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-transform: uppercase;
+    font-size: 10px;
+}
+/* Pointers */
+.hover_pointer:hover {
+    cursor: pointer;
+}
+/* Table View: Sub-Cell Items */
+.tableview_subcell_key {
+    width: 4rem;
+    display: inline-block;
+}
+.tableview_subcell_view {
+    font-size: 1.25rem;
+    font-family: var(--theme_font_primary);
+    font-weight: var(--theme_title_font_weight);
+}
+.tableview_subcell_key {
+    width: 90px;
+}
+/* Disabled/Inactive Buttons */
+a.btn.disabled {
+    cursor: not-allowed;
+    color: #F44336 !important;
+    background: #fdebe9;
+}
+.disabled {
+    cursor: not-allowed;
+}
+/* Table View: Label (Form) */
+.tableview_title {
+    font-size: 1.25rem;
+    font-family: var(--theme_font_primary);
+    font-weight: var(--theme_title_font_weight);
+}
+.tableview_subtitle {
+    font-size: 1.25rem;
+    font-family: var(--theme_font_primary);
+    font-weight: var(--theme_subtitle_font_weight);
+}
+/* Table View: Label (Text) */
+.tableview_label_text {
+}
+/* Table View: Label */
+.tableview_label {
+    width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+/* Table View: Text */
+.tableview_text {
+    width: 300px;
+    overflow: hidden;
+    border-radius: 5px;
+    padding: 5px;
+    max-height: 75px;
+    font-style: italic;
+}
+/* Images Previews */
+img.image_preview {
+    background-color: var(--checker_back_secondary);
+    background-image: linear-gradient(
+    45deg, var(--checker_back_primary) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--checker_back_primary) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--checker_back_primary) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--checker_back_primary) 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+    height: 75px;
+    max-width: 200px;
+    object-fit: scale-down;
+    padding: 3px;
+    border-radius: 3px;
+}
+.material-icons {
+    font-family: 'Material Icons' !important;
+}
+.material-icons {
+    vertical-align: middle;
+}
+
+/*----------------------------------------------------------------------------*/
+/*  ADMIN SHIT */
+/*----------------------------------------------------------------------------*/
+
+/* Functional Sidebar Logo */
+body.sidebar-toggled img#dashboard_logo_large {
+    display: none;
+}
+body:not(.sidebar-toggled) img#dashboard_logo_small {
+    display: none;
+}
+#accordionSidebar img#dashboard_logo_large {
+    height: 30px;
+}
+#accordionSidebar img#dashboard_logo_small {
+    height: 60px;
+}
+/* Functional Sidebar Padding */
+#accordionSidebar .sidebar-heading {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+#accordionSidebar a.nav-link {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+#accordionSidebar hr.sidebar-divider {
+    padding-top: 10px !important;
+}
+#accordionSidebar.toggled a.nav-link::after {
+    display: none;
+}
+#accordionSidebar a.nav-link::after {
+    content: '\f105';
+    font-family: 'Font Awesome 5 Free' !important;
+    width: 1rem;
+    float: right;
+    font-weight: 900;
+}
+/* Arbitrary Theming Shit */
+* {
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+.sidebar {
+    background: #333;
+}
+.sidebar li.nav-item.active {
+    background: #222;
+}
+.sidebar-brand {
+    background: #222;
+}
+/* Navbar like Google Cloud Platform*/
+nav.navbar {
+    height: 55px;
+}
+a.sidebar-brand {
+    height: 55px !important;
+}
+nav.navbar .dropdown-toggle {
+    color: white !important;
+}
+#main_search {
+    background: #ffffff50 !important;
+    color: white !important;
+}
+nav.navbar {
+    height: 55px;
+    background: #77ba40 !important;
+    box-shadow: 0 7px 10px 0 rgba(60,66,87, 0.12) , 0 3px 5px 0 rgba(0,0,0, 0.12) !important;
+    /*
+    position: sticky;
+    top: 0px;
+    */
+}
+#main_search_button {
+    background: #ffffff50;
+    border-radius: 5px 0px 0px 5px !important;
+    color: white !important;
+}
+#main_content_nav {
+    height: 50px;
+    border-bottom: 1px solid #d4d5d8;
+}
+body.sidebar-toggled .sidebar .nav-link {
+    text-align: center;
+}
+body.sidebar-toggled .sidebar .nav-link span {
+    display: none !important;
+}
+@media only screen and (max-width: 767px) {
+    ul#accordionSidebar {
+        display: none;
+    }
+}
+#sidebarToggleTop {
+    color: white;
+}
+#main_sidebar_navlink {
+    border-bottom: 1px solid #ffffff26;
+    padding-left: 15px;
+    padding-right: 15px;
+    height: 50px;
+    color: white;
+}
+#main_sidebar_navlink i {
+    font-size: 28px;
+    vertical-align: middle;
+}
+/* Content full height */
+#content .container-fluid {
+    min-height: calc(100vh - 55px);
+    overflow: hidden;
+}
+#main_content_row {
+    height: calc(100vh - 105px);
+}
+.navbar-nav {
+    height: 55px;
+    margin: 0px;
+}
+a.dropdown-toggle {
+    height: 55px !important;
+    margin: 0px;
+}
+button#toggle_back_sidebar {
+    height: 35px;
+    width: 35px;
+    background: #ffffff4a;
+    color: white;
+}
+.row > div {
+    position: inherit;
+}
+table.sheet_view {
+    height: calc(100vh - 105px);
+    display: inline-block;
+    overflow: scroll;
+}
+/*============================================================================*/
+/* DONT FUCK WITH MY TABLES */
+/* DONT FUCK WITH MY TABLES */
+/* DONT FUCK WITH MY TABLES */
+/* DONT FUCK WITH MY TABLES */
+/* DONT FUCK WITH MY TABLES */
+/* DONT FUCK WITH MY TABLES */
+/* DONT FUCK WITH MY TABLES */
+/* DONT FUCK WITH MY TABLES */
+/*============================================================================*/
+tbody {
+    display:block;
+    height:calc(100vh - 150px);
+    overflow:auto;
+}
+thead, tbody tr {
+    display:table;
+    table-layout:fixed;
+}
+@media only screen and (max-width: 1500px) {
+    /*
+    nav.navbar {
+        background: #ca1ee9 !important;
+    }
+    */
+    thead, tbody tr {
+        width: 210vw;
+    }
+}
+@media only screen and (max-width: 1400px) {
+    /*
+    nav.navbar {
+        background: #ca1ee9 !important;
+    }
+    */
+    thead, tbody tr {
+        width: 225vw;
+    }
+}
+@media only screen and (max-width: 1300px) {
+    /*
+    nav.navbar {
+        background: #E91E63 !important;
+    }
+    */
+    thead, tbody tr {
+        width: 240vw;
+    }
+}
+@media only screen and (max-width: 1200px) {
+    /*
+    nav.navbar {
+        background: #FF5722 !important;
+    }
+    */
+    thead, tbody tr {
+        width: 260vw;
+    }
+}
+@media only screen and (max-width: 1100px) {
+    /*
+    nav.navbar {
+        background: #FFC107 !important;
+    }
+    */
+    thead, tbody tr {
+        width: 280vw;
+    }
+}
+@media only screen and (max-width: 1000px) {
+    /*
+    nav.navbar {
+        background: #FFEB3B !important;
+    }
+    */
+    thead, tbody tr {
+        width: 320vw;
+    }
+}
+@media only screen and (max-width: 900px) {
+    /*
+    nav.navbar {
+        background: #CDDC39 !important;
+    }
+    */
+    thead, tbody tr {
+        width: 360vw;
+    }
+}
+@media only screen and (max-width: 800px) {
+    /*
+    nav.navbar {
+        background: #22ff00 !important;
+    }
+    */
+    thead, tbody tr {
+        width: 400vw;
+    }
+}
+@media only screen and (max-width: 700px) {
+    /*
+    nav.navbar {
+        background: #00ffbe !important;
+    }
+    */
+    thead, tbody tr {
+        width: 470vw;
+    }
+}
+@media only screen and (max-width: 600px) {
+    /*
+    nav.navbar {
+        background: #0060ff !important;
+    }
+    */
+    thead, tbody tr {
+        width: 580vw;
+    }
+}
+@media only screen and (max-width: 500px) {
+    /*
+    nav.navbar {
+        background: #8b00ff !important;
+    }
+    */
+    thead, tbody tr {
+        width: 700vw;
+    }
+}
+@media only screen and (max-width: 400px) {
+    /*
+    nav.navbar {
+        background: red !important;
+    }
+    */
+    thead, tbody tr {
+        width: 800vw;
+    }
+}
+/*============================================================================*/
+/*
+/* [END] DONT FUCK WITH MY TABLES */
+/* [END] DONT FUCK WITH MY TABLES */
+/* [END] DONT FUCK WITH MY TABLES */
+/* [END] DONT FUCK WITH MY TABLES */
+/* [END] DONT FUCK WITH MY TABLES */
+/* [END] DONT FUCK WITH MY TABLES */
+/* [END] DONT FUCK WITH MY TABLES */
+/* [END] DONT FUCK WITH MY TABLES */
+/*
+/*============================================================================*/
+.tableview_button {
+    text-align: center;
+}
+.tableview_image_and_description .tableview_label {
+    display: inline-block;
+    height: 91px;
+    white-space: inherit;
+    width: calc(100% - 155px);
+    margin-top: -75px;
+    margin-left: 155px;
+    font-size: 13px !important;
+}
+.tableview_edit_aux_warpper p {
+    margin: 0px;
+}
+.tableview_edit_aux_warpper code {
+    background: #6b6b6b;
+    color: #9ddc68;
+    border-radius: 5px;
+}
+.tableview_edit_aux_warpper * {
+    margin-top: 5px !important;
+}
+.tableview_edit_aux_warpper {
+    width: calc(100% - 80px);
+    margin-top: -50px;
+    margin-left: 80px;
+}
+div.tableview_edit_aux_warpper p {
+    font-size: 13px !important;
+}
+div.tableview_edit_aux_warpper code {
+    font-size: 11px !important;
+}

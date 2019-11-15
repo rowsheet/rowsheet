@@ -1,0 +1,98 @@
+<style>
+.organization_resource {
+    font-family: "Oswald";
+}
+</style>
+<div class="row px-3">
+    <div class="col-md-3">
+        <ul class="nav nav-pills mb-3" id="orgTabs">
+            {% for org in organizations %}
+            <li class="nav-item w-100 pb-2">
+                <a class="nav-link btn btn-outline-primary organization_resource btn-sm
+                    {% if forloop.first %}
+                    active
+                    {% endif %}
+                    " id="pills-home-tab" data-toggle="pill"
+                    href="#organization_tab_{{ org.id }}" role="tab"
+                    aria-controls="pills-home" aria-selected="true">
+                    {{ org.name }}
+                </a>
+            </li>
+            {% endfor %}
+            <li class="nav-item w-100">
+                <a class="nav-link btn btn-outline-success organization_resource" id="pills-home-tab" data-toggle="pill"
+                    href="#organization_tab_new" role="tab"
+                    aria-controls="pills-home" aria-selected="true">
+                    <i class="fas fa-plus fa-fw"></i>
+                    Add New Organization
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-9">
+        <div class="tab-content" id="orgTabsContent">
+            {% for org in organizations %}
+            <div class="tab-pane fade show
+                {% if forloop.first %}
+                active
+                {% endif %}
+                " id="organization_tab_{{ org.id }}"
+                role="tabpanel" aria-labelledby="pills-home-tab">
+
+                <ul class="nav nav-pills mb-3" id="orgSubTabs">
+                    <li class="nav-item mr-2">
+                        <a class="nav-link btn btn-outline-primary organization_resource active"
+                            id="pills-home-tab" data-toggle="pill" href="#organization_tab_info_{{ org.id }}" role="tab"
+                            aria-controls="pills-home" aria-selected="true">
+                            {{ org.name }}
+                        </a>
+                    </li>
+                    <li class="nav-item mr-2">
+                        <a class="nav-link btn btn-outline-primary organization_resource"
+                            id="pills-home-tab" data-toggle="pill" href="#organization_tab_apps_{{ org.id }}" role="tab"
+                            aria-controls="pills-home" aria-selected="true">
+                            {{ org.name }}
+                        </a>
+                    </li>
+                    <li class="nav-item mr-2">
+                        <a class="nav-link btn btn-outline-primary organization_resource"
+                            id="pills-home-tab" data-toggle="pill" href="#organization_tab_users_{{ org.id }}" role="tab"
+                            aria-controls="pills-home" aria-selected="true">
+                            {{ org.name }}
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="tab-content" id="orgSubTabsContent">
+                    <div class="tab-pane fade show active" id="organization_tab_info_{{ org.id }}"
+                        role="tabpanel" aria-labelledby="pills-home-tab">
+                        <p class="mb-0">Name:</p>
+                        <h3>
+                            <strong class="text-primary">{{ org.name }}</strong>
+                        </h3>
+                        <p class="mb-0">Description:</p>
+                        <p>
+                            <strong class="text-primary">
+                                <i class="fas fa-quote-left"></i>
+                            {{ org.description }}
+                            </strong>
+                        </p>
+                    </div>
+                    <div class="tab-pane fade show" id="organization_tab_apps_{{ org.id }}"
+                        role="tabpanel" aria-labelledby="pills-home-tab">
+                        Two 
+                    </div>
+                    <div class="tab-pane fade show" id="organization_tab_users_{{ org.id }}"
+                        role="tabpanel" aria-labelledby="pills-home-tab">
+                        Three 
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="tab-pane fade show" id="organization_tab_new"
+                role="tabpanel" aria-labelledby="pills-home-tab">
+                Add New Organization
+            </div>
+        </div>
+    </div>
+</div>

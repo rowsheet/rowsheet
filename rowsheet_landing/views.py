@@ -17,13 +17,25 @@ def api(request):
     rjson = serializers.serialize('json',results)
     return HttpResponse(rjson, content_type='application/json')
 
+def components(request):
+    return HttpResponse("SOMETHING")
+
 def dashboard(request):
     dashboard = Dashboard()
     dashboard.set_sidebar(rowsheet_dashboard_sidebar)
     dashboard.set_title("Dashboard")
-    from affiliate_marketing.views import BrandSliderSheet
-    bss = BrandSliderSheet()
-    body = bss.render()
+    return dashboard.render()
+
+def dashboard_organizations(request):
+    dashboard = Dashboard()
+    dashboard.set_sidebar(rowsheet_dashboard_sidebar)
+    dashboard.set_title("Organizations")
+
+    from rowsheet_apps.models import Organization
+    organizations = Organization.objects.all().filter(author=request.user)
+    body = render_to_string("app/organizations.html", context={
+        "organizations": organizations,
+    })
     dashboard.set_body(body)
     return dashboard.render()
 
@@ -31,30 +43,9 @@ def dashboard_apps(request):
     dashboard = Dashboard()
     dashboard.set_sidebar(rowsheet_dashboard_sidebar)
     dashboard.set_title("Apps")
-
-    from rowsheet_apps.models import ClientApp
-    rows = ClientApp.objects.all()
-    from django.template import Template, Context
-    template = Template("""
-    <style>
-img.image_preview {
-    height: 100px;
-    width: 100px;
-    object-fit: contain;
-}
-    </style>
-        {{ something }}
-        {{ len }}
-        {% for row in rows %}
-            <h1>Row: {{ row }}</h1>
-        {% endfor %}
-    """)
-    body = template.render(Context({
-        "something": "FOO",
-        "rows": rows,
-        "len": len(rows),
-    }))
-
+    from affiliate_marketing.views import BrandSliderSheet
+    bss = BrandSliderSheet()
+    body = bss.render()
     dashboard.set_body(body)
     return dashboard.render()
 

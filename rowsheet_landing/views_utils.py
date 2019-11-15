@@ -13,10 +13,6 @@ def rowsheet_dashboard_sidebar():
             "active": False,
         },
         {
-            "type": "label",
-            "title": "Something",
-        },
-        {
             "type": "link",
             "title": "Apps",
             "fa_icon": "cog",
@@ -25,9 +21,9 @@ def rowsheet_dashboard_sidebar():
         },
         {
             "type": "link",
-            "title": "---",
+            "title": "Organizations",
             "fa_icon": "cog",
-            "href": "#",
+            "href": "/dashboard/organizations",
             "active": False,
         },
         {

@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.utils.safestring import mark_safe
-from django.template import Template, Context
 
 from .models import Brand
 from .models import BrandCategory
@@ -9,124 +8,7 @@ from .models import BrandSlider
 from .models import TrustedBrand
 
 from common import utils
-
-class SheetView:
-
-    def _render_sheet(self):
-        template = Template("""
-<style>
-td {
-    border: 1px solid black;
-}
-.table_wrapper {
-    overflow: scroll;
-}
-</style>
-<h1>{{ model_name }}</h1>
-<div class="row">
-    <div class="col-12 table_wrapper">
-        <table>
-            <thead>
-                <tr>
-                    {% for field in fields %}
-                    <td>
-                        {{ field }}
-                    </td>
-                    {% endfor %}
-                </tr>
-            </thead>
-            <tbody>
-                {% for row in rows %}
-                <tr>
-                    {% for column in row %}
-                    <td>
-                        {{ column }}
-                    </td>
-                    {% endfor %}
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-</div>
-        """)
-        fields = [field.name for field in self.model._meta.get_fields()]
-        query = self.model.objects.all()
-        rows = [
-            [getattr(item, field) for field in fields]
-            for item in query
-        ]
-        context = {
-            "model_name": self.model.__name__,
-            "fields": fields,
-            "rows": rows,
-        }
-        return template.render(Context(context))
-
-    def _render_list(self):
-        template = Template("""
-<style>
-tbody {
-    background: white;
-}
-#content {
-    background: #eee;
-}
-tbody tr {
-    border-bottom: 1px solid #eeeeee;
-}
-.table_wrapper {
-    overflow: scroll;
-}
-img.image_preview {
-    width: 100px;
-    height: 100px;
-    object-fit: contain;
-}
-</style>
-<div class="row">
-    <div class="col-12 table_wrapper">
-        <table>
-            <thead>
-                <tr>
-                    {% for field in fields %}
-                    <td>
-                        {{ field }}
-                    </td>
-                    {% endfor %}
-                </tr>
-            </thead>
-            <tbody>
-                {% for row in rows %}
-                <tr>
-                    {% for column in row %}
-                    <td>
-                        {{ column }}
-                    </td>
-                    {% endfor %}
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-</div>
-        """)
-        fields = self.list_display
-        query = self.model.objects.all()
-        rows = [
-            [getattr(self, field)(item) for field in fields]
-            for item in query
-        ]
-        context = {
-            "model_name": self.model.__name__,
-            "fields": fields,
-            "rows": rows,
-        }
-        return template.render(Context(context))
-
-    def render(self):
-        # return self._render_sheet()
-        return self._render_list()
+from rowsheet.admin.SheetView import SheetView
 
 class BrandSliderSheet(SheetView):
     model = BrandSlider
@@ -151,9 +33,8 @@ class BrandSliderSheet(SheetView):
     list_display = (
         "_edit",
         "_slide_info",
-        "_image",
+        "_image_and_description",
         "_brand",
-        "_description",
         "_priority",
         "c_custom_button",
         "c_homepage_button_active",
@@ -169,12 +50,14 @@ class BrandSliderSheet(SheetView):
         "priority",
     )
     def _edit(self, obj):
-        return utils.edit_button()
-    def _image(self, obj):
-        return utils.tableview_cloudfile(obj.image)
-    def _description(self, obj):
-        return utils.tableview_text(obj.description)
-    _description.admin_order_field = "description"
+        return utils.edit_button(
+            creation_timestamp = obj.creation_timestamp,
+            last_changed_timestamp = obj.last_changed_timestamp,
+        )
+    def _image_and_description(self, obj):
+        # return utils.tableview_cloudfile(obj.image)
+        return utils.image_and_description(obj.image, obj.description)
+    _image_and_description.admin_order_field = "description"
     def _brand(self, obj):
         return utils.brand_link(obj.brand, obj.brand.name)
     _brand.admin_order_field = "brand"
