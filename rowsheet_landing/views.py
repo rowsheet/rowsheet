@@ -28,10 +28,41 @@ def component_index(request):
     )
     dashboard.set_off_canvas_sidebar()
     dashboard.set_title("Component Index")
+
+    dashboard.set_title("Foo")
+    loaders = [
+        {
+            "title": "foo",
+            "path": "/components/foo"
+        },
+        {
+            "title": "the bar",
+            "path": "/components/bar"
+        },
+        {
+            "title": "baz",
+            "path": "/components/baz"
+        },
+        {
+            "title": "qux",
+            "path": "/components/qux"
+        },
+    ]
+    [dashboard.set_loader(loader["title"], loader["path"])
+            for loader in loaders]
+    # Try to get the tab set from the last request on refresh.
+    tab = request.GET.get("tab")
+    # Set the default active loader (onload).
+    dashboard.set_active_loader("foo")
+    # Make sure to replace spaces from the titles as that's what will
+    # come in with a get request.
+    if tab in [loader["title"].replace(" ","") for loader in loaders]:
+        dashboard.set_active_loader(tab)
+        print("Saving tab as: " + tab)
     return dashboard.render()
 
 def components(request):
-    return HttpResponse("SOMETHING")
+    return HttpResponse("Hello, from: " + request.build_absolute_uri())
 
 def dashboard(request):
     dashboard = Dashboard()

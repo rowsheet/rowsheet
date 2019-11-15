@@ -561,15 +561,12 @@ div#profile_photo_placeholder:hover i {
     height: 100%;
     border-radius: 0px;
 }
-.main_content_nav_title {
-    padding-top: 13px;
-}
 button.main_content_nav_item {
     background: none;
     color: #4d73df;
     border: none;
+    height: 51px;
 }
-
 button.main_content_nav_item.active {
     background: #ebecef !important;
     color: #2653d4 !important;
@@ -577,9 +574,10 @@ button.main_content_nav_item.active {
     padding-bottom: 0px;
 }
 .main_content_nav_title {
+    padding: 12px;
     text-align: left;
-    padding-left: 15px;
     font-weight: bold;
+    font-size: 21px;
 }
 
 /* Look like GCP */
@@ -602,7 +600,8 @@ button.main_content_nav_item.active {
 }
 .sidebar-brand {
     background: #77ba3f;
-    box-shadow: 0 7px 10px 0 rgba(60,66,87, 0.12) , 0 3px 5px 0 rgba(0,0,0, 0.12) !important;
+    box-shadow: -5px 7px 10px 0 rgba(60,66,87, 0.12) , -5px 3px 5px 0 rgba(0,0,0, 0.12) !important;
+    margin-right: -1px;
 }
 button#toggle_back_sidebar {
     background: #77ba3f;
@@ -612,4 +611,25 @@ button#toggle_back_sidebar i {
 }
 a#main_sidebar_navlink {
     border-bottom: 1px solid #dbdcde;
+}
+
+
+.container-fluid.full-width {
+    padding-left: 0;
+    padding-right: 0;
+    overflow-x: hidden;
+}
+.row.row-no-gutter {
+    margin: 0
+}
+.row.row-no-gutter > [class*="col-"] {
+    padding: 0
+}
+.img-full-width {
+    width: 100.5%;
+    height: auto;
+}
+.row.row-no-gutter .inner {
+    padding-left: 10px;
+    padding-right: 10px;
 }

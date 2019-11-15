@@ -107,22 +107,102 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid px-0">
+                <div class="container-fluid full-width">
 
                     <!-- Page Heading -->
                     <div id="main_content_nav" class="d-sm-flex align-items-center justify-content-between px-0">
                         <h5 class="main_content_nav_item main_content_nav_title text-dark m-0">{{ title }}</h5>
-                        <button class="main_content_nav_item btn btn-primary">Something</button>
-                        <button class="main_content_nav_item btn btn-primary active">Something</button>
-                        <button class="main_content_nav_item btn btn-primary">Something</button>
+                        {% if body is None %}
+                            {% for loader in body_loaders %}
+                                <button class="main_content_nav_item btn btn-primary
+                                {% if loader.title == active_loader %}
+                                active
+                                {% endif %}"
+                                onclick="applib.load_component(
+                                    '{{ loader.path }}',
+                                    '#main_content_row',
+                                    '{{ loader.safe_title }}',
+                                )"
+                                id="main_content_loader_{{ loader.safe_title }}"
+                                >
+                                    {{ loader.title }} 
+                                </button>
+                            {% endfor %}
+                        {% endif %}
                     </div>
 
-                    <!-- Content Row -->
-                    <div class="row" id="main_content_row">
+<script>
+var applib = {
+    set_tab_history: function(title) {
+        window.history.pushState('','',window.location.href.split("?")[0] + "?tab=" + title);
+    },
+    show_loading: function(destination) {
+        $(destination).html("")
+        $(destination).html(`
+<div class="loading" style="margin: auto;">
+    <i class="fas fa-sync fa-spin"></i>
+    Loading...
+</div>
+        `);
+    },
+    load_component_error: function(destination) {
+        $(destination).html("")
+        $(destination).html(`
+<div class="alert alert-danger"
+    style="margin: auto;">
+    Ooops... there was a problem loading this page.
+</div>
+        `);
+    },
+    load_component_response: function(response, destination) {
+        $(destination).html("")
+        $(destination).html(response)
+    },
+    load_component: function(component_path, destination, title) {
+        console.log("Loding component '" + component_path + "' into '" + destination + "'");
+        $(".main_content_nav_item.active").removeClass("active");
+        $("#main_content_loader_" + title).addClass("active");
+        applib.set_tab_history(title);
+        applib.show_loading(destination);
+        $.ajax({
+            "method": "GET",
+            "url": component_path,
+            "success": function(response) {
+                console.log(response);
+                applib.load_component_response(response, destination);
+            },
+            "error": function(error) {
+                console.error(error);
+                applib.load_component_error(destination);
+            }
+        });
+    }
+}
+</script>
 
-                        <div class="col-md-12" style="position: initial;">
-                            {{ body }}
-                        </div>
+                    <!-- Content Row -->
+                    <div class="row row-no-gutter" id="main_content_row">
+
+                        {% if body is None %}
+                            {% for loader in body_loaders %}
+                                {% if loader.safe_title == active_loader %}
+<script>
+window.onload = function() {
+    applib.load_component(
+        '{{ loader.path }}',
+        '#main_content_row',
+        '{{ loader.safe_title }}',
+    );
+}
+</script>
+                                    {{ loader.path }}
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <div class="col-md-12" style="position: initial;">
+                                {{ body }}
+                            </div>
+                        {% endif %}
 
                     </div>
 
