@@ -25,6 +25,8 @@
     <link href="https://fonts.googleapis.com/css?family=Oswald:200,400,700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.2.0/css/uikit.min.css" rel="stylesheet">
     <link href="/static/rowsheet/layouts/dashboard.css" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -188,6 +190,7 @@ var applib = {
                                 {% if loader.safe_title == active_loader %}
 <script>
 window.onload = function() {
+    $('.btn').mouseup(function() { this.blur() })
     applib.load_component(
         '{{ loader.path }}',
         '#main_content_row',
@@ -249,6 +252,9 @@ window.onload = function() {
     <!-- Core plugin JavaScript-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.2.0/js/uikit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/js/dataTables.bootstrap4.min.js""></script>
+    <script src="//cdn.datatables.net/plug-ins/1.10.20/features/pageResize/dataTables.pageResize.min.js"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script>

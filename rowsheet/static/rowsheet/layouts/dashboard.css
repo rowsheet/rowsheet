@@ -348,12 +348,12 @@ table.sheet_view {
 /* DONT FUCK WITH MY TABLES */
 /* DONT FUCK WITH MY TABLES */
 /*============================================================================*/
-tbody {
+.sheet_view tbody {
     display:block;
     height:calc(100vh - 150px);
     overflow:auto;
 }
-thead, tbody tr {
+.sheet_view thead, .sheet_view tbody tr {
     display:table;
     table-layout:fixed;
 }
@@ -363,7 +363,7 @@ thead, tbody tr {
         background: #ca1ee9 !important;
     }
     */
-    thead, tbody tr {
+    .sheet_view thead, .sheet_view tbody tr {
         width: 210vw;
     }
 }
@@ -373,7 +373,7 @@ thead, tbody tr {
         background: #ca1ee9 !important;
     }
     */
-    thead, tbody tr {
+    .sheet_view thead, .sheet_view tbody tr {
         width: 225vw;
     }
 }
@@ -383,7 +383,7 @@ thead, tbody tr {
         background: #E91E63 !important;
     }
     */
-    thead, tbody tr {
+    .sheet_view thead, .sheet_view tbody tr {
         width: 240vw;
     }
 }
@@ -393,7 +393,7 @@ thead, tbody tr {
         background: #FF5722 !important;
     }
     */
-    thead, tbody tr {
+    .sheet_view thead, .sheet_view tbody tr {
         width: 260vw;
     }
 }
@@ -403,7 +403,7 @@ thead, tbody tr {
         background: #FFC107 !important;
     }
     */
-    thead, tbody tr {
+    .sheet_view thead, .sheet_view tbody tr {
         width: 280vw;
     }
 }
@@ -413,7 +413,7 @@ thead, tbody tr {
         background: #FFEB3B !important;
     }
     */
-    thead, tbody tr {
+    .sheet_view thead, .sheet_view tbody tr {
         width: 320vw;
     }
 }
@@ -423,7 +423,7 @@ thead, tbody tr {
         background: #CDDC39 !important;
     }
     */
-    thead, tbody tr {
+    .sheet_view thead, .sheet_view tbody tr {
         width: 360vw;
     }
 }
@@ -433,7 +433,7 @@ thead, tbody tr {
         background: #22ff00 !important;
     }
     */
-    thead, tbody tr {
+    .sheet_view thead, .sheet_view tbody tr {
         width: 400vw;
     }
 }
@@ -443,7 +443,7 @@ thead, tbody tr {
         background: #00ffbe !important;
     }
     */
-    thead, tbody tr {
+    .sheet_view thead, .sheet_view tbody tr {
         width: 470vw;
     }
 }
@@ -453,7 +453,7 @@ thead, tbody tr {
         background: #0060ff !important;
     }
     */
-    thead, tbody tr {
+    .sheet_view thead, .sheet_view tbody tr {
         width: 580vw;
     }
 }
@@ -463,7 +463,7 @@ thead, tbody tr {
         background: #8b00ff !important;
     }
     */
-    thead, tbody tr {
+    .sheet_view thead, .sheet_view tbody tr {
         width: 700vw;
     }
 }
@@ -473,7 +473,7 @@ thead, tbody tr {
         background: red !important;
     }
     */
-    thead, tbody tr {
+    .sheet_view thead, .sheet_view tbody tr {
         width: 800vw;
     }
 }

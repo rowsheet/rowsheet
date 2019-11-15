@@ -17,8 +17,21 @@ def api(request):
     rjson = serializers.serialize('json',results)
     return HttpResponse(rjson, content_type='application/json')
 
-def component_index(request):
-    dashboard = Dashboard()
+def set_body_loaders(dashboard, loaders, request):
+    # Set all the loaders to the dashboard.
+    [dashboard.set_loader(loader["title"], loader["path"])
+            for loader in loaders]
+    # Try to get the tab set from the last request on refresh.
+    tab = request.GET.get("tab")
+    # Set the default active loader as the first loader (onload).
+    dashboard.set_active_loader(loaders[0]["title"])
+    # Make sure to replace spaces from the titles as that's what will
+    # come in with a get request.
+    if tab in [loader["title"].replace(" ","") for loader in loaders]:
+        dashboard.set_active_loader(tab)
+    return dashboard
+
+def _temp_config(dashboard):
     dashboard.set_normal_sidebar(rowsheet_dashboard_sidebar)
     dashboard.set_new_alerts(3)
     dashboard.set_new_messages(5)
@@ -28,11 +41,15 @@ def component_index(request):
     )
     dashboard.set_off_canvas_sidebar()
     dashboard.set_title("Component Index")
+    return dashboard
 
+def component_index(request):
+    dashboard = Dashboard()
+    dashboard = _temp_config(dashboard)
     dashboard.set_title("Foo")
     loaders = [
         {
-            "title": "foo",
+            "title": "the foo",
             "path": "/components/foo"
         },
         {
@@ -48,20 +65,19 @@ def component_index(request):
             "path": "/components/qux"
         },
     ]
-    [dashboard.set_loader(loader["title"], loader["path"])
-            for loader in loaders]
-    # Try to get the tab set from the last request on refresh.
-    tab = request.GET.get("tab")
-    # Set the default active loader (onload).
-    dashboard.set_active_loader("foo")
-    # Make sure to replace spaces from the titles as that's what will
-    # come in with a get request.
-    if tab in [loader["title"].replace(" ","") for loader in loaders]:
-        dashboard.set_active_loader(tab)
-        print("Saving tab as: " + tab)
+    dashboard = set_body_loaders(dashboard, loaders, request)
     return dashboard.render()
 
 def components(request):
+    app = request.GET.get("app")
+    model = request.GET.get("model")
+    view = request.GET.get("view")
+    if app == "affiliate_marketing":
+        if model == "brand_slider":
+            if view == "sheet_view":
+                from affiliate_marketing.views import BrandSliderSheet
+                bss = BrandSliderSheet()
+                return HttpResponse(bss.render())
     return HttpResponse("Hello, from: " + request.build_absolute_uri())
 
 def dashboard(request):
@@ -87,13 +103,19 @@ def dashboard_organizations(request):
 
 def dashboard_apps(request):
     dashboard = Dashboard()
-    dashboard.set_normal_sidebar(rowsheet_dashboard_sidebar)
-    dashboard.set_off_canvas_sidebar()
-    dashboard.set_title("Apps")
-    from affiliate_marketing.views import BrandSliderSheet
-    bss = BrandSliderSheet()
-    body = bss.render()
-    dashboard.set_body(body)
+    dashboard = _temp_config(dashboard)
+    dashboard.set_title("Foo")
+    loaders = [
+        {
+            "title": "the",
+            "path": "/components/?app=affiliate_marketing&model=brand_slider&view=sheet_view",
+        },
+        {
+            "title": "qux",
+            "path": "/tests/"
+        },
+    ]
+    dashboard = set_body_loaders(dashboard, loaders, request)
     return dashboard.render()
 
 def index(request):
